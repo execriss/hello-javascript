@@ -8,6 +8,9 @@ let saludo = `Hola!!! bienvenido ${name} ${apellido}`;
 // number
 let age = 30; // entero
 let height = 1.77; // decimal
+let random = Math.floor(Math.random() * 10); // del 0 al 9 (porque floor redondea hacia abajo)
+// let random = Math.floor(Math.random() * 10); // del 0 al 99
+console.log("RANDOM: ", random);
 
 // boolean
 let isStudent = false;
