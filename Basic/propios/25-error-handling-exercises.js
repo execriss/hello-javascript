@@ -168,14 +168,18 @@ let myObject2 = {
 
 const getValueToObject = (value) => {
   let element = myObject2[value];
-  console.log(element);
+  if (element) {
+    console.log(element);
+  } else {
+    throw new Error("Elemento NO encontrado");
+  }
 };
 
 try {
-  // getValueToObject(name);
-  getValueToObject("name");
+  getValueToObject("casa");
+  // getValueToObject("name");
 } catch (error) {
-  throw new Error("Se ha producido un error!");
+  console.log("Se ha producido un error: ", error.message);
 }
 
 // 10. Crea una función que realice reintentos en caso de error hasta un máximo de 10
@@ -201,7 +205,7 @@ function ejecutarConReintentos(funcion, maxReintentos = 10, espera = 1000) {
 
 // Función que puede fallar
 function tareaArriesgada() {
-  if (Math.random() < 0.7) throw new Error("Error aleatorio"); // Falla el 70% de las veces
+  if (Math.random() < 0.7) throw new Error("Error lanzado por nosotros mismos"); // Falla el 70% de las veces
   return "¡Éxito!";
 }
 

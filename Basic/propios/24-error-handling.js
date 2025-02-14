@@ -6,6 +6,11 @@
 
 // Excepción (algo que no esperabamos que pasara en nuestro flujo)
 
+/*
+  CAPTURAMOS ERRORES CON: TRY CATCH
+  LANZAMOS ERRORES CON: THROW new Error()
+*/
+
 // let myObject;
 // Como no existe email, nuestro programa se rompe
 // console.log(myObject.email);
