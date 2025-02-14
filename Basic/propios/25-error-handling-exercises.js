@@ -140,8 +140,76 @@ try {
 
 console.log("----------------------------------------------");
 
-// 8. Crea un bucle que intente transformar a float cada valor y capture y muestre los errores
+// 8. Crea un bucle que intente convertir una lista de valores a float cada valor y capture y muestre los errores
 
-// 9. Crea una función que verifique si un objeto tiene una propiedad específica y lance una excepción personalizada
+const valores = ["123.45", "abc", "78.9", null, undefined, "56.7px", {}, []];
+
+valores.forEach((valor, index) => {
+  try {
+    let convertido = parseFloat(valor);
+    if (isNaN(convertido)) {
+      throw new Error(`No se puede convertir "${valor}" a float.`);
+    }
+    console.log(`Valor en índice ${index}: ${convertido}`);
+  } catch (error) {
+    console.error(`Error en índice ${index}: ${error.message}`);
+  }
+});
+
+console.log("----------------------------------------------");
+
+// 9. Crea una función que verifique si un objeto tiene una propiedad específica y lance una excepción
+
+let myObject2 = {
+  name: "Exe",
+  surname: "Guiñazu",
+  age: 30,
+};
+
+const getValueToObject = (value) => {
+  let element = myObject2[value];
+  console.log(element);
+};
+
+try {
+  // getValueToObject(name);
+  getValueToObject("name");
+} catch (error) {
+  throw new Error("Se ha producido un error!");
+}
 
 // 10. Crea una función que realice reintentos en caso de error hasta un máximo de 10
+
+function ejecutarConReintentos(funcion, maxReintentos = 10, espera = 1000) {
+  for (let intento = 1; intento <= maxReintentos; intento++) {
+    try {
+      return funcion(); // Intenta ejecutar la función
+    } catch (error) {
+      console.error(`Intento ${intento} fallido: ${error.message}`);
+      if (intento < maxReintentos) {
+        console.log(`Reintentando en ${espera / 1000} segundos...`);
+        const inicio = Date.now();
+        while (Date.now() - inicio < espera) {} // Pausa el código por el tiempo especificado
+      } else {
+        throw new Error(
+          `Se ha producido un error tras ${maxReintentos} intentos.`
+        );
+      }
+    }
+  }
+}
+
+// Función que puede fallar
+function tareaArriesgada() {
+  if (Math.random() < 0.7) throw new Error("Error aleatorio"); // Falla el 70% de las veces
+  return "¡Éxito!";
+}
+
+try {
+  const resultado = ejecutarConReintentos(tareaArriesgada);
+  console.log("Resultado final:", resultado);
+} catch (error) {
+  console.error("¡Error crítico!: ", error.message);
+}
+
+console.log("--------------------------------------------");
