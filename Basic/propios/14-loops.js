@@ -51,13 +51,13 @@ console.log("----ARRAY----");
 for (let valor of myArray) {
   console.log(valor);
 }
-console.log("----SET----");
 
+console.log("----SET----");
 for (let valor of mySet) {
   console.log(valor);
 }
-console.log("----MAP----");
 
+console.log("----MAP----");
 for (let valor of myMap) {
   console.log(valor);
 }

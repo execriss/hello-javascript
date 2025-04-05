@@ -44,7 +44,7 @@ console.log(`Contamos ${countVocales} en el string "${stringVocales}"`);
 // 6. Dado un array de números, usa un bucle para multiplicar todos los números y mostrar el producto
 console.log("..............6..............");
 let numbers = [1, 2, 3, 4, 5];
-let countNumbers = numbers[0];
+let countNumbers = 1;
 
 for (let number of numbers) {
   countNumbers *= number;
