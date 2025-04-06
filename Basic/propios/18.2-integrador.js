@@ -2,7 +2,7 @@
 // Input: [1, 2, 3, 4, 5, 6]
 // Output: 3
 
-///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 // 2. Crear una función que reciba un nombre y edad, y retorne un mensaje
 // Input: "Juan", 15
 // Output: "Hola Juan, tenés 15 años."
