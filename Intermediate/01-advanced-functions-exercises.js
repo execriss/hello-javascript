@@ -1,13 +1,37 @@
-/*
-Clase 1 - Funciones avanzadas (29/01/2025)
-Vídeo: https://www.twitch.tv/videos/2367024319?t=00h08m45s
-*/
-
 // 1. Crea una función que retorne a otra función
+const functionA = () => {
+  return () => {
+    console.log("Segunda función");
+  };
+};
+
+const callFunctionA = functionA();
+callFunctionA();
 
 // 2. Implementa una función currificada que multiplique 3 números
+const functionCurrying = (a) => {
+  return (b) => {
+    return (c) => {
+      return a * b * c;
+    };
+  };
+};
+
+const currying1 = functionCurrying(5)(10); // Al llamarla recibe a, pero al ejecutarla también recibe b (segundo parentesis)
+const currying2 = currying1(2); // Esta sería la instancia del segundo return
+console.log(currying2);
 
 // 3. Desarrolla una función recursiva que calcule la potencia de un número elevado a un exponente
+function factorial(n) {
+  if (n <= 1) {
+    return 1;
+  }
+  console.log("N", n);
+
+  return n * factorial(n - 1);
+}
+
+console.log(factorial(4));
 
 // 4. Crea una función createCounter() que reciba un valor inicial y retorne un objeto con métodos para increment(), decrement() y getValue(), utilizando un closure para mantener el estado
 

@@ -1,150 +1,75 @@
-/*
-Clase 2 - Estructuras avanzadas (05/02/2025)
-Vídeo: https://www.twitch.tv/videos/2373300186?t=00h15m32s
-*/
+// Estructuras avanzadas
 
 // Arrays avanzados
 
-// - Métodos funcionales
+// - Métodos //
 
-// forEach
+// forEach (accede a cada uno de los elementos, pero no devuelve un array como MAP)
+let numbers = [1, 2, 3, 4, 5, 6];
+let numbers2 = numbers.forEach((element) => console.log(element * 2));
+console.log(numbers2); // undefined
 
-let numbers = [1, 2, 3, 4, 5, 6]
+// map (accede a cada uno de los elementos y retorna un nuevo array transformando cada elemento)
+let newNumbers = numbers.map((element) => element * 2);
+console.log(newNumbers);
 
-numbers.forEach(element => console.log(element))
+// filter (siguiendo el mandato de MAP, filter nos va a devolver un nuevo array con el filtro que apliquemos)
+let evens = numbers.filter((element) => element % 2 === 0);
+console.log(evens);
 
-// map
+// reduce (es una función reductora sobre cada elemento del array, devolviendo la suma del "valorPrevio" + "valorActual")
+let sum = numbers.reduce(
+  (valorPrevio, valorActual) => valorPrevio + valorActual, // En el "valorPrevio" se va acumulando el total
+  0
+);
+console.log(sum);
 
-let doubled = numbers.map(element => element * 2)
-console.log(doubled)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// - Manipulación //
 
-// filter
+// flat (aplana un array que tenga una profundidad específica)
+let nestedArray = [1, [2, [3, [4]]]];
+let flatArray = nestedArray.flat(3); // nivel de profundidad
+console.log(flatArray); // [ 1, 2, 3, 4 ]
 
-let evens = numbers.filter(element => element % 2 === 0)
-console.log(evens)
+// flatMap (combina flat y map)
+let phrases = ["Hola mundo", "Adios mundo"];
+let words = phrases.flatMap((phrase) => phrase.split(" "));
+console.log(words);
 
-// reduce
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// - Ordenación //
 
-let sum = numbers.reduce((result, current) => result + current, 0)
-console.log(sum)
+// sort (devuelve un nuevo array ordenado siguiendo un criterio que le pasemos, por defecto lo hace alfabéticamente)
+// let unsorted = [3, 4, 1, 6, 10];
+let unsorted = ["b", "j", "a", "c"];
+let sorted = unsorted.sort();
+console.log(sorted);
 
-// - Manipulación
+let unsorted2 = [3, 4, 1, 6, 10];
+let sorted2 = unsorted2.sort((a, b) => a - b); // Criterio de comparación para números
+console.log(sorted2);
 
-// flat
+// reverse (NO devuelve un nuevo array, muta el array original y lo da vuelta)
+unsorted2.reverse(); // No necesitamos guardarlo en una variable, ya que muta al original, NO devuelve nada
+console.log(unsorted2);
 
-let nestedArray = [1, [2, [3, [4]]]]
-console.log(nestedArray)
-let flatArray = nestedArray.flat(1)
-console.log(flatArray)
-flatArray = nestedArray.flat(2)
-console.log(flatArray)
-flatArray = nestedArray.flat(3)
-console.log(flatArray)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// - Búsqueda //
 
-// flatMap
+// includes (Recibe un elemento como parámetro, y verifica si ese elemento existe en el array.)
+console.log(sorted2.includes(5)); // Devuelve un boolean
 
-let phrases = ["Hola mundo", "Adiós mundo"]
-let words = phrases.flatMap(phrase => phrase.split(" "))
-console.log(words)
+// find (Devuelve el primer elemento que cumpla cierta condición mas compleja que includes())
+sorted2 = [5, 8, 2, 6, 9, 8, 5, 1];
+let firstEven = sorted2.find((element) => element % 2 === 0); // si no encuentra ninguno devuelve undefined
+console.log(firstEven);
 
-// - Ordenación
+// findIndex (misma lógica que el find, pero devuelve el índice del elemento, no su valor.)
+let firstIndex = sorted2.findIndex((element) => element % 2 === 0); // si no encuentra ninguno devuelve -1
+console.log(firstIndex);
 
-// sort
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// - Sets avanzados //
 
-let unsorted = ["b", "a", "d", "c"]
-let sorted = unsorted.sort()
-console.log(sorted)
-
-unsorted = [3, 4, 1, 6, 10]
-sorted = unsorted.sort((a, b) => a - b)
-
-console.log(sorted)
-
-// reverse
-
-sorted.reverse()
-console.log(sorted)
-
-// - Búsqueda
-
-// includes
-
-console.log(sorted.includes(4))
-console.log(sorted.includes(5))
-
-// find
-
-let firstEven = sorted.find(element => element % 2 === 0)
-console.log(firstEven)
-
-// findIndex
-
-let firstEvenIndex = sorted.findIndex(element => element % 2 === 0)
-console.log(firstEvenIndex)
-
-// Sets avanzados
-
-// - Operaciones
-
-// Eliminación de duplicados
-
-let numbersArray = [1, 2, 2, 3, 4, 5, 6, 6]
-numbersArray = [...new Set(numbersArray)]
-console.log(numbersArray)
-
-// Unión
-
-const setA = new Set([1, 2, 3])
-const setB = new Set([2, 3, 4, 5])
-const union = new Set([...setA, ...setB])
-console.log(union)
-
-// Intersección
-
-const intersection = new Set([...setA].filter(element => setB.has(element)))
-console.log(intersection)
-
-// Diferencia
-
-const difference = new Set([...setA].filter(element => !setB.has(element)))
-console.log(difference)
-
-// - Conversión
-
-// Set a Array
-
-console.log([...setA])
-
-// - Iteración
-
-// forEach
-
-setA.forEach(element => console.log(element))
-
-// Maps avanzados
-
-// - Iteración
-
-let myMap = new Map([
-    ["name", "MoureDev"],
-    ["age", 37]
-])
-
-myMap.forEach((value, key) => console.log(`${key}: ${value}`))
-
-// - Conversión
-
-// Map a Array
-
-const arrayFromMap = Array.from(myMap)
-console.log(arrayFromMap)
-
-// Map a Objeto
-
-const objectFromMap = Object.fromEntries(myMap)
-console.log(objectFromMap)
-
-// Objeto a Map
-
-const mapFromObject = new Map(Object.entries(objectFromMap))
-console.log(mapFromObject)
+//
